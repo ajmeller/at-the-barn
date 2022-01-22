@@ -1,0 +1,32 @@
+.landing-container {
+  font-size: 14pt;
+
+  .album-of-day {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+
+    .title {
+      font-size: 18pt;
+      font-weight: 300;
+      margin-bottom: 15px;
+      font-style: italic;
+    }
+
+    .album-cover {
+      img {
+        width: 300px;
+        border-radius: 5px;
+        box-shadow: 6px 6px 10px rgba(0, 0, 255, 0.2);
+        margin-bottom: 10px;
+      }
+    }
+
+    .album-details {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+}
