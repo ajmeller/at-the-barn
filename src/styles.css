@@ -1,1 +1,36 @@
-/* You can add global styles to this file, and also import other style files */
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  color: #9e7862;
+  background-color: #fffefa;
+  font-size: 14pt;
+  font-family: "Crimson Pro", serif;
+}
+
+button {
+  width: 130px;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  font-size: 14pt;
+  background-color: #675c53;
+  color: #fffefa;
+  font-family: "Crimson Pro", serif;
+}
+
+button:hover {
+  background-color: #7a6e63;
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+  color: #9e7862;
+}
+
+a:hover {
+  color: #5a6e53;
+}

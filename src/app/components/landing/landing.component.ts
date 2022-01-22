@@ -16,12 +16,10 @@ export class LandingComponent implements OnInit {
   ) {}
 
   private stream: Subscription | null = null;
+  public albums: {} = {};
+  public user = {};
+  public randomAlbumOfDay;
 
-  ngOnDestroy(): void {
-    if (this.stream) {
-      this.stream.unsubscribe();
-    }
-  }
   ngOnInit(): void {
     const stream = this._tokenService.authTokens.pipe(
       switchMap((x) => {
@@ -29,15 +27,23 @@ export class LandingComponent implements OnInit {
       })
     );
     this.stream = stream.subscribe((x) => (this.user = x));
+
+    this._spotifyService.getUserAlbums(0).subscribe((x: any) => {
+      if (x.items) {
+        this.albums = x.items;
+        this.randomAlbumOfDay = this.getRandomAlbum(this.albums);
+      }
+    });
   }
 
-  public user = {};
-
-  public hasUser(): boolean {
-    return !!this.user;
+  ngOnDestroy(): void {
+    if (this.stream) {
+      this.stream.unsubscribe();
+    }
   }
 
-  public get jUser(): {} {
-    return JSON.stringify(this.user, null, 2);
+  public getRandomAlbum(albums) {
+    const randomNum = Math.floor(Math.random() * albums.length) - 1;
+    return albums[randomNum].album;
   }
 }

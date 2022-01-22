@@ -25,13 +25,16 @@ export class SpotifyService {
     );
   }
 
-  public fetchUserAlbums(): Observable<{}> {
-    return this.http.get(this.apiAlbumsUrl).pipe(
-      tap((user: {}) => {
-        this.user$.next(this.user);
-      }),
-      catchError(this.handleError("getSelfAlbums"))
-    );
+  public getUserAlbums(offset: number): Observable<{}> {
+    return this.http
+      .get(`${this.apiAlbumsUrl}/?limit=50&offset=${offset}`)
+      .pipe(
+        //return this.http.get(`${this.apiAlbumsUrl}`).pipe(
+        tap((user: {}) => {
+          this.user$.next(this.user);
+        }),
+        catchError(this.handleError("getSelfAlbums"))
+      );
   }
 
   public getUserStream(): Observable<{}> {

@@ -1,10 +1,11 @@
 <div class="nav-container">
-    <div class="title">At the barn.</div>
-    <div class="links">
-        <div><a routerLink="/top-songs" routerLinkActive="active">Songs</a></div>
-        <div><a routerLink="/top-albums" routerLinkActive="active">Albums</a></div>
-        <div><a routerLink="/top-artists" routerLinkActive="active">Artists</a></div>
-        <div><a routerLink="" routerLinkActive="active">Today</a></div>
+    <a class="title" routerLink="" routerLinkActive="active">At the barn.</a>
+    <div class="links-container">
+        <div class="links">
+            <div><a routerLink="/library" routerLinkActive="active">Library</a></div>
+            <div><a routerLink="/rankings" routerLinkActive="active">Rankings</a></div>
+            <div><a routerLink="" routerLinkActive="active">Today</a></div>
+        </div>
     </div>
-    <!-- <span class="user"><mat-icon>person</mat-icon></span> -->
+    <span class="logout"><span class="material-icons" (click)="logout()">close</span></span>
 </div>

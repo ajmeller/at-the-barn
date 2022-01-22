@@ -1,29 +1,42 @@
 .nav-container {
-  margin: 10px;
+  width: 100%;
+  padding: 20px 0px 10px 0px;
+  background-color: #e4d5af;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  font-weight: 600;
 
   .title {
+    display: flex;
+    justify-content: center;
     font-family: "Source Code Pro", monospace;
     font-size: 32pt;
     text-align: center;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
   }
 
-  .links {
+  .links-container {
     display: flex;
-    justify-content: space-around;
-    font-family: "Crimson Pro", serif;
-    font-weight: 300;
-    font-size: 19pt;
+    justify-content: center;
+    width: 100%;
 
-    a {
-      text-decoration: none;
-      color: black;
+    .links {
+      display: flex;
+      justify-content: space-around;
+      font-weight: 300;
+      font-size: 19pt;
+      width: 80%;
     }
   }
 
-  .user {
+  .logout {
     position: relative;
-    left: 98%;
+    left: 94vw;
     top: -90px;
+    cursor: pointer;
+  }
+
+  .logout:hover {
+    color: #5a6e53;
   }
 }

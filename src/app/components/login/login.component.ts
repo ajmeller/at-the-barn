@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
       redirect_uri: "http://localhost:4200/authorized",
       state: "",
       show_dialog: true,
-      scope: ["user-read-private", "user-read-email"],
+      scope: ["user-read-private", "user-read-email", "user-library-read"],
     };
     this._authService.configure(ac).authorize();
   }
