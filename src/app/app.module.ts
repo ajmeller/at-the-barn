@@ -3,7 +3,6 @@ import { NgModule } from "@angular/core";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { SpotifyAuthModule } from "spotify-auth";
 import { SpotifyService } from "./services/spotify.service";
-import { SpotifyAuthInterceptor2 } from "./interceptors/spotify-auth.interceptor";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MatButtonModule } from "@angular/material/button";
 
@@ -15,6 +14,7 @@ import { RankingsComponent } from "./components/rankings/rankings.component";
 import { LandingComponent } from "./components/landing/landing.component";
 import { LibraryComponent } from "./components/library/library.component";
 import { LoginService } from "./services/login.service";
+import { AuthenticationInterceptor } from "./interceptors/auth.interceptor";
 
 @NgModule({
   declarations: [
@@ -38,7 +38,7 @@ import { LoginService } from "./services/login.service";
     LoginService,
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: SpotifyAuthInterceptor2,
+      useClass: AuthenticationInterceptor,
       multi: true,
     },
   ],

@@ -11,7 +11,7 @@ export class LoginService {
 
   get isLoggedIn(): boolean {
     const token = this.parseToken();
-    return token !== undefined;
+    return token !== null;
   }
 
   constructor(
@@ -23,8 +23,8 @@ export class LoginService {
       if (!this.parseToken() && token) {
         sessionStorage.setItem("user-token", JSON.stringify(token));
         this._router.navigate(["home"]);
-      } else if (!this.parseToken() && !token) {
-        sessionStorage.setItem("user-token", "");
+      } else if (this.parseToken() === "" || this.parseToken() === null) {
+        sessionStorage.setItem("user-token", null);
       }
       this.isLoggedIn$.next(this.isLoggedIn);
     });
@@ -32,9 +32,7 @@ export class LoginService {
 
   parseToken(): string {
     const userToken = sessionStorage.getItem("user-token");
-    if (userToken) {
-      return JSON.parse(userToken);
-    }
+    return userToken ? JSON.parse(userToken) : null;
   }
 
   login(): void {
