@@ -16,7 +16,7 @@ export class SpotifyService {
     this.user$ = new BehaviorSubject<{}>(this.user);
   }
 
-  public fetchUserInfo(): Observable<{}> {
+  public getUserInfo(): Observable<{}> {
     return this.http.get(this.apiUserUrl).pipe(
       tap((user: {}) => {
         this.user$.next(this.user);
@@ -29,16 +29,11 @@ export class SpotifyService {
     return this.http
       .get(`${this.apiAlbumsUrl}/?limit=50&offset=${offset}`)
       .pipe(
-        //return this.http.get(`${this.apiAlbumsUrl}`).pipe(
         tap((user: {}) => {
           this.user$.next(this.user);
         }),
         catchError(this.handleError("getSelfAlbums"))
       );
-  }
-
-  public getUserStream(): Observable<{}> {
-    return this.user$.asObservable();
   }
 
   private handleError<T>(operation = "operation", result?: T) {

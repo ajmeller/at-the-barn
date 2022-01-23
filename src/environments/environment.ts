@@ -5,8 +5,9 @@
 export const environment = {
   production: false,
   auth0: {
-    domain: 'atthebarn',
-    clientId: '0af22cfee82f4fab8adee4aff7a57240',
+    domain: "atthebarn",
+    clientId: "0af22cfee82f4fab8adee4aff7a57240",
+    redirectUri: "http://localhost:4200/authorized",
   },
 };
 

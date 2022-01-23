@@ -14,6 +14,7 @@ import { NavComponent } from "./components/nav/nav.component";
 import { RankingsComponent } from "./components/rankings/rankings.component";
 import { LandingComponent } from "./components/landing/landing.component";
 import { LibraryComponent } from "./components/library/library.component";
+import { LoginService } from "./services/login.service";
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { LibraryComponent } from "./components/library/library.component";
   ],
   providers: [
     SpotifyService,
+    LoginService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: SpotifyAuthInterceptor2,

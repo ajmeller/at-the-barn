@@ -1,10 +1,10 @@
-<div class="nav-container">
+<div class="nav-container" *ngIf="isLoggedIn$ | async">
     <a class="title" routerLink="" routerLinkActive="active">At the barn.</a>
     <div class="links-container">
         <div class="links">
             <div><a routerLink="/library" routerLinkActive="active">Library</a></div>
             <div><a routerLink="/rankings" routerLinkActive="active">Rankings</a></div>
-            <div><a routerLink="" routerLinkActive="active">Today</a></div>
+            <div><a routerLink="/home" routerLinkActive="active">Today</a></div>
         </div>
     </div>
     <span class="logout"><span class="material-icons" (click)="logout()">close</span></span>

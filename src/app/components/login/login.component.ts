@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { AuthConfig, AuthService } from "spotify-auth";
-import { environment } from "../../../environments/environment";
+import { LoginService } from "../../services/login.service";
 
 @Component({
   selector: "app-login",
@@ -8,18 +7,10 @@ import { environment } from "../../../environments/environment";
   styleUrls: ["./login.component.scss"],
 })
 export class LoginComponent implements OnInit {
-  constructor(private _authService: AuthService) {}
+  constructor(private _loginService: LoginService) {}
 
   public login(): void {
-    const ac: AuthConfig = {
-      client_id: environment.auth0.clientId,
-      response_type: "token",
-      redirect_uri: "http://localhost:4200/authorized",
-      state: "",
-      show_dialog: true,
-      scope: ["user-read-private", "user-read-email", "user-library-read"],
-    };
-    this._authService.configure(ac).authorize();
+    this._loginService.login();
   }
 
   ngOnInit(): void {}

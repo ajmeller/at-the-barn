@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
-import { TokenService } from "spotify-auth";
+import { Observable } from "rxjs";
+import { LoginService } from "../../services/login.service";
 
 @Component({
   selector: "app-nav",
@@ -8,12 +8,13 @@ import { TokenService } from "spotify-auth";
   styleUrls: ["./nav.component.scss"],
 })
 export class NavComponent implements OnInit {
-  constructor(private _tokenService: TokenService, private _router: Router) {}
+  public isLoggedIn$: Observable<boolean> = this._loginService.isLoggedIn$;
+
+  constructor(private _loginService: LoginService) {}
 
   ngOnInit(): void {}
 
   public logout(): void {
-    this._tokenService.clearToken();
-    this._router.navigate(["login"]);
+    this._loginService.logout();
   }
 }

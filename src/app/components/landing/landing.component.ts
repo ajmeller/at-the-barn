@@ -23,7 +23,7 @@ export class LandingComponent implements OnInit {
   ngOnInit(): void {
     const stream = this._tokenService.authTokens.pipe(
       switchMap((x) => {
-        return this._spotifyService.fetchUserInfo();
+        return this._spotifyService.getUserInfo();
       })
     );
     this.stream = stream.subscribe((x) => (this.user = x));
