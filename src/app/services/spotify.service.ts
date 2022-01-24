@@ -6,8 +6,7 @@ import { of } from "rxjs/observable/of";
 
 @Injectable()
 export class SpotifyService {
-  private apiUserUrl: string = "https://api.spotify.com/v1/me";
-  private apiAlbumsUrl: string = "https://api.spotify.com/v1/me/albums";
+  private spotifyBaseUrl: string = "https://api.spotify.com/v1";
 
   private user: {} = {};
   private user$: BehaviorSubject<{}>;
@@ -16,24 +15,32 @@ export class SpotifyService {
     this.user$ = new BehaviorSubject<{}>(this.user);
   }
 
-  public getUserInfo(): Observable<{}> {
-    return this.http.get(this.apiUserUrl).pipe(
-      tap((user: {}) => {
-        this.user$.next(this.user);
-      }),
-      catchError(this.handleError("getSelf"))
-    );
-  }
-
   public getUserAlbums(offset: number): Observable<{}> {
     return this.http
-      .get(`${this.apiAlbumsUrl}/?limit=50&offset=${offset}`)
-      .pipe(
-        tap((user: {}) => {
-          this.user$.next(this.user);
-        }),
-        catchError(this.handleError("getSelfAlbums"))
-      );
+      .get(`${this.spotifyBaseUrl}/me/albums/?limit=50&offset=${offset}`)
+      .pipe(catchError(this.handleError("getSelfAlbums")));
+  }
+
+  public getRecommendedTracks(
+    artistId: string,
+    genre: string,
+    trackId: string
+  ): Observable<{}> {
+    return this.http
+      .get(`${this.spotifyBaseUrl}/recommendations/?seed_artists=${artistId}`)
+      .pipe(catchError(this.handleError("getRecommendations")));
+  }
+
+  public getUserTopArtists(): Observable<{}> {
+    return this.http
+      .get(`${this.spotifyBaseUrl}/me/top/artists`)
+      .pipe(catchError(this.handleError("getTopArtists")));
+  }
+
+  public getUserTopTracks(): Observable<{}> {
+    return this.http
+      .get(`${this.spotifyBaseUrl}/me/top/tracks?time_range=long_term`)
+      .pipe(catchError(this.handleError("getTopTracks")));
   }
 
   private handleError<T>(operation = "operation", result?: T) {

@@ -6,7 +6,7 @@ body {
   margin: 0;
   color: #9e7862;
   background-color: #fffefa;
-  font-size: 14pt;
+  font-size: 16pt;
   font-family: "Crimson Pro", serif;
 }
 
@@ -14,11 +14,14 @@ button {
   width: 130px;
   padding: 10px;
   border: none;
-  border-radius: 4px;
+  border-radius: 500px;
   font-size: 14pt;
   background-color: #675c53;
   color: #fffefa;
   font-family: "Crimson Pro", serif;
+
+  transition-property: background-color, border-color, color, box-shadow, filter;
+  transition-duration: 0.3s;
 }
 
 button:hover {

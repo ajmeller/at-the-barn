@@ -7,4 +7,13 @@
             <div *ngFor="let artist of album.artists, index as i" class="artist-name">{{artist.name}}</div><span *ngIf="i < album.artists.length - 1">,</span>
         </div>
     </div>
+
+    <div class="song-of-day">
+        <div class="title">Song of the day</div>
+        <!-- <div class="album-cover"><img [src]="album.images[0].url"></div>
+        <div class="album-details">
+            <div class="album-name">{{album.name}}</div>
+            <div *ngFor="let artist of album.artists, index as i" class="artist-name">{{artist.name}}</div><span *ngIf="i < album.artists.length - 1">,</span>
+        </div> -->
+    </div>
 </div>

@@ -3,14 +3,18 @@
   flex-direction: column;
   align-items: center;
   font-size: 18pt;
+  height: 100vh;
 
   .title-bar {
-    text-align: center;
     width: 100%;
-    padding: 20px 0px;
     background-color: #e4d5af;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
+    margin-bottom: 50px;
+
+    .title-bar-content {
+      margin: 20px 0px 30px 30px;
+    }
 
     h1 {
       font-family: "Source Code Pro", monospace;
@@ -19,15 +23,27 @@
     }
   }
 
-  .login-message {
-    height: 100px;
+  .login-box {
+    margin-top: 50px;
     display: flex;
     align-items: center;
-    margin: 15px 0px;
+    justify-content: center;
   }
 
-  .spotify-logo {
-    width: 100px;
-    margin-left: 10px;
+  button {
+    min-width: 275px;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    background-color: #1db954;
+    font-size: 13px;
+    border-radius: 500px;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 2px;
+    border-radius: 500px;
+    padding: 16px 48px 18px;
+
+    &:hover {
+      background-color: #25d462;
+    }
   }
 }

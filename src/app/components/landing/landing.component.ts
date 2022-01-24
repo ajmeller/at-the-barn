@@ -1,7 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { Subscription } from "rxjs";
-import { switchMap } from "rxjs/operators";
-import { TokenService } from "spotify-auth";
 import { SpotifyService } from "../../services/spotify.service";
 
 @Component({
@@ -10,40 +7,25 @@ import { SpotifyService } from "../../services/spotify.service";
   styleUrls: ["./landing.component.scss"],
 })
 export class LandingComponent implements OnInit {
-  public constructor(
-    private _spotifyService: SpotifyService,
-    private _tokenService: TokenService
-  ) {}
-
-  private stream: Subscription | null = null;
-  public albums: {} = {};
-  public user = {};
+  public albums: any[];
   public randomAlbumOfDay;
 
-  ngOnInit(): void {
-    const stream = this._tokenService.authTokens.pipe(
-      switchMap((x) => {
-        return this._spotifyService.getUserInfo();
-      })
-    );
-    this.stream = stream.subscribe((x) => (this.user = x));
+  public tracks: any[];
+  public randomSongOfDay;
 
+  public constructor(private _spotifyService: SpotifyService) {}
+
+  ngOnInit(): void {
     this._spotifyService.getUserAlbums(0).subscribe((x: any) => {
       if (x.items) {
         this.albums = x.items;
-        this.randomAlbumOfDay = this.getRandomAlbum(this.albums);
+        this.randomAlbumOfDay = this.getItemAtRandomIndex(this.albums).album;
       }
     });
   }
 
-  ngOnDestroy(): void {
-    if (this.stream) {
-      this.stream.unsubscribe();
-    }
-  }
-
-  public getRandomAlbum(albums) {
-    const randomNum = Math.floor(Math.random() * albums.length) - 1;
-    return albums[randomNum].album;
+  public getItemAtRandomIndex(items: any[]) {
+    const randomNum = Math.floor(Math.random() * items.length) - 1;
+    return items[randomNum];
   }
 }
